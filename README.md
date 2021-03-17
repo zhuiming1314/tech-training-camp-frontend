@@ -32,12 +32,38 @@ node ./src/components/js/server.js
 + 可视化工具栏
 + 在线存储文档
 
-## 目录结构/技术栈
+## 技术栈
++ VUE + webpack + ElementUI
++ Mongodb (atlas) + Express
+
+
+## 目录结构
 ```
 src-|
-      components-|
+    |components-|
                    js-|
-                       client.js 
+                      |client.js #工具栏功能实现与客户端请求
+                      |db.js     #mongodb(atlas)数据库操作
+                      |editorCore.js #codemirror与marked实现的编辑器
+                      |server.js #Express实现服务端响应
+                  |Editor.vue #编辑器组件
+                  |Result.vue #显示页面组件
+                  |Toolbar.vue #工具栏组件
+     |config-|
+             |marked.js #marked设置
+     |router-|
+             |index.js #用于页面刷新
+     |store-| 
+            |index.js #结合sessionStorage实现用户数据更新于保存
+     |App.vue
+     |main.js
 ```
+
+## 待完善
++ 部分语法解析尚不支持
++ 未实现编辑栏和限时栏同轴滚动
++ ...
+
+
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
