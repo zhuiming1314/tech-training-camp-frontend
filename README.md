@@ -18,7 +18,9 @@ npm run dev
 #发布模式
 # build for production with minification
 npm run build
-or
+
+#or
+
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
