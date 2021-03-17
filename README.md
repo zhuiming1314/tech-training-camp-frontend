@@ -1,8 +1,8 @@
 # Markdown Editor
 
-> A Vue.js project
+> An online real-time Markdown editor
 
-## Build Setup
+## build setup
 
 ``` bash
 # install dependencies
@@ -27,5 +27,17 @@ npm run build --report
 node ./src/components/js/server.js
 ```
 
+## 实现功能
++ markdown基本语法实时解析并显示
++ 可视化工具栏
++ 在线存储文档
+
+## 目录结构/技术栈
+```
+src-|
+      components-|
+                   js-|
+                       client.js 
+```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
