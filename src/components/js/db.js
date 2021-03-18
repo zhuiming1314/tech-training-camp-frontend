@@ -21,24 +21,27 @@ function insertUser(username, password, callback){
         if(err) throw err;
         var flag = false;
         //select
+        /*
         client.db("markdown_db").collection("user_info").find({"name":username}).toArray(function(err, res){
             if(err) throw err;
             if(res.length>0){
                 flag = true;
+                console.log('select');
                 callback(res, false);
             }
             client.close();
             return;
         }); 
-        
+        */
         //insert
-        if(flag==false){
+        //if(flag==false){
             client.db("markdown_db").collection("user_info").insertOne({"name":username, "pwd":password}, (err, res)=>{
                 if(err) throw err;
+                console.log('insert');
                 callback(res, true);
                 client.close();
             })
-        }
+        //}
         
    });
 }

@@ -41,19 +41,23 @@ app.post('/process_register', function(req, res){
         res.json({code:-1, message:'确认密码不能为空'});
     }else if(password!=repassword){
         res.json({code:-1, message:'两次密码不一致'})
-    }else{      
-        db.insertUser(username, password, function(result, flag){
-            if(result){
-                if(flag){
-                    res.json({code:0, message:'注册成功'});
-                }else{
-                    res.json({code:-1, message:"注册失败，该用户名已存在"});
-                }
-                
+    }else{ 
+        db.selectUser(username, function(result){
+            if(result.length>0){
+                res.json({code:-1, message:'注册失败，该用户名已存在'});
             }else{
-                res.json({code:-1, message:'注册失败'});
+                db.insertUser(username, password, function(result, flag){
+                    if(result){
+                        if(flag){
+                            res.json({code:0, message:'注册成功'});
+                        }
+                    }else{
+                        res.json({code:-1, message:'注册失败'});
+                    }
+                })
             }
-        })
+        })    
+        
     }
 });
 app.post('/process_upload', function(req, res){

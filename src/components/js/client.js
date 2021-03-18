@@ -24,8 +24,8 @@ export default {
         {name:'delete', icon:'el-icon-document-delete', msg:'删除当前文档'},
         {name:'save', icon:'el-icon-document-checked', msg:'保存'},
       ],
-      userName: this.$store.getters.getToken ? this.$store.getters.getToken : 'M',
-      hoverContent: this.userName=='M' ? "点击登录" : "点击登出",
+      userName: this.$store.getters.getToken ? this.$store.getters.getToken :'M',
+      hoverContent: this.$store.getters.getToken ?'点击登出':'点击登录',
       activeName: 'login',
       dialogVisible: false,
       uname: '',
@@ -113,6 +113,7 @@ export default {
       }
     },
     submit(){
+      //console.log(this.userName)
       this.$http({
         method:'post',
         url:"http://127.0.0.1:8081/process_login",
@@ -138,11 +139,14 @@ export default {
             type:'success',
             offset:200
           });
+          
+          this.$router.go(0);
           this.uname = ''
           this.pwd = ''
-          this.$router.go(0);
         }else{
+          
           alert(res.data.message);
+          this.dialogVisible=false;
         }  
       });
       this.dialogVisible=false;
@@ -156,20 +160,21 @@ export default {
             password:this.pwd.trim(),
             repassword:this.repwd.trim()
         }
-      }).then(function(res){
+      }).then(res=>{
         if(res.data.code==0){
           this.$message({
             message:"注册成功",
             type:'success',
             offset:200
           });
-          
+
           this.uname = ''
           this.pwd = ''
           this.repwd = ''
           this.activeName = 'login'
         }else{
           alert(res.data.message);
+          //this.$router.go(0);
         }
       })
     },
