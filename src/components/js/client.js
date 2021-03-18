@@ -163,6 +163,7 @@ export default {
             type:'success',
             offset:200
           });
+          
           this.uname = ''
           this.pwd = ''
           this.repwd = ''

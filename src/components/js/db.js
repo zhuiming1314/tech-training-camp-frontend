@@ -30,6 +30,7 @@ function insertUser(username, password, callback){
             client.close();
             return;
         }); 
+        
         //insert
         if(flag==false){
             client.db("markdown_db").collection("user_info").insertOne({"name":username, "pwd":password}, (err, res)=>{
