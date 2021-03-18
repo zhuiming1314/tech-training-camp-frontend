@@ -19,19 +19,25 @@ function selectUser(username, callback){
 function insertUser(username, password, callback){
     mongoClient.connect(uri,function(err, client){
         if(err) throw err;
+        var flag = false;
+        //select
         client.db("markdown_db").collection("user_info").find({"name":username}).toArray(function(err, res){
             if(err) throw err;
             if(res.length>0){
+                flag = true;
                 callback(res, false);
-            }else{
-                client.db("markdown_db").collection("user_info").insertOne({"name":username, "pwd":password}, (err, res)=>{
-                    if(err) throw err;
-                    callback(res, true);
-                    //client.close();
-                })
             }
             client.close();
+            return;
         }); 
+        //insert
+        if(flag==false){
+            client.db("markdown_db").collection("user_info").insertOne({"name":username, "pwd":password}, (err, res)=>{
+                if(err) throw err;
+                callback(res, true);
+                client.close();
+            })
+        }
         
    });
 }

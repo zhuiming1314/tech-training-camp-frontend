@@ -138,6 +138,8 @@ export default {
             type:'success',
             offset:200
           });
+          this.uname = ''
+          this.pwd = ''
           this.$router.go(0);
         }else{
           alert(res.data.message);
@@ -161,6 +163,10 @@ export default {
             type:'success',
             offset:200
           });
+          this.uname = ''
+          this.pwd = ''
+          this.repwd = ''
+          this.activeName = 'login'
         }else{
           alert(res.data.message);
         }
