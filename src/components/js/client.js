@@ -230,7 +230,12 @@ export default {
               offset:200
           });
           if(_operation=="insert"){
-              this.$store.commit("setFile",this.$store.getters.getFile+","+res.data.message);
+              if(this.$store.getters.getFile){
+                this.$store.commit("setFile",this.$store.getters.getFile+","+res.data.message);
+              }else{
+                this.$store.commit("setFile", res.data.message);
+              }
+              
               this.$router.go(0);
           }
           }else{
